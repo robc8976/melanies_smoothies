@@ -51,7 +51,9 @@ import pandas as pd
 my_dataframe = pd.DataFrame(rows, columns=columns)
 cur.close()
 
-#st.dataframe(data=my_dataframe, use_container_width=True)
+#uncommented 07/11/25
+st.dataframe(data=my_dataframe, width="stretch")
+st.stop()
 
 ingredients_list = st.multiselect(
     'Choose up to 5 ingredients:'
