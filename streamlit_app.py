@@ -1,5 +1,6 @@
 # Import python packages
 import streamlit as st
+import requests
 
 # add snowflake connector 07/11/25
 import snowflake.connector
@@ -63,6 +64,8 @@ if ingredients_list:
     
     for fruit_chosen in ingredients_list:
         ingredients_string += fruit_chosen + ' '
+        smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+        sf_ds = st.dataframe(data=smoothiefroot_response.json(), width="stretch")
     
     #st.write(ingredients_string)
 
@@ -79,8 +82,3 @@ if ingredients_list:
         cur.execute(my_insert_stmt)
         cur.close()
         st.success('Your Smoothie is ordered,' + name_on_order + '!', icon="✅")
-
-import requests
-smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
-#st.text(smoothiefroot_response.json())
-sf_ds = st.dataframe(data=smoothiefroot_response.json(), width="stretch")
