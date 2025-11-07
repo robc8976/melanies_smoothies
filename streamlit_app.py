@@ -51,9 +51,8 @@ import pandas as pd
 my_dataframe = pd.DataFrame(rows, columns=columns)
 cur.close()
 
-#uncommented 07/11/25
-st.dataframe(data=my_dataframe, width="stretch")
-st.stop()
+#st.dataframe(data=my_dataframe, width="stretch")
+#st.stop()
 
 ingredients_list = st.multiselect(
     'Choose up to 5 ingredients:'
@@ -66,6 +65,9 @@ if ingredients_list:
     
     for fruit_chosen in ingredients_list:
         ingredients_string += fruit_chosen + ' '
+        search_on=my_dataframe.loc[my_dataframe['FRUIT_NAME'] == fruit_chosen, 'SEARCH_ON'].iloc[0]
+        st.write('The search value for ', fruit_chosen,' is ', search_on, '.')
+
         st.subheader(fruit_chosen + ' Nutrition Information')
         smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/" + fruit_chosen)
         sf_ds = st.dataframe(data=smoothiefroot_response.json(), width="stretch")
