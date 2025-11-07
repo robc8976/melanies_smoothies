@@ -75,6 +75,8 @@ if ingredients_list:
 
     if time_to_insert:
         #session.sql(my_insert_stmt).collect()
-        conn.execute(my_insert_stmt)
+        cur = conn.cursor()
+        cur.execute(my_insert_stmt)
+        cur.close()
     
         st.success('Your Smoothie is ordered,' + name_on_order + '!', icon="✅")
