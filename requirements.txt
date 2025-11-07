@@ -3,3 +3,4 @@ snowflake-snowpark-python
 streamlit
 snowflake-connector-python
 cryptography
+requests
