@@ -45,8 +45,9 @@ st.write('The name on your Smoothie will be: ', name_on_order)
 cur = conn.cursor()
 cur.execute("SELECT FRUIT_NAME FROM smoothies.public.fruit_options")
 rows = cur.fetchall()
+columns = [desc[0] for desc in cur.description]
 import pandas as pd
-my_dataframe = pd.DataFrame(rows, columns="FRUIT_NAME")
+my_dataframe = pd.DataFrame(rows, columns=columns)
 cur.close()
 
 #st.dataframe(data=my_dataframe, use_container_width=True)
