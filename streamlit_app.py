@@ -14,7 +14,7 @@ private_key_str = st.secrets["snowflake"]["private_key"]
 private_key = serialization.load_pem_private_key(
     private_key_str.encode(),
     #password=None,
-    password=st.secrets["snowflake"]["private_key_pp"]
+    password=st.secrets["snowflake"]["private_key_pp"],
     backend=default_backend()
 )
 conn = snowflake.connector.connect(
