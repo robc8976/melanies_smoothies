@@ -1,6 +1,31 @@
 # Import python packages
 import streamlit as st
+
+# add snowflake connector 07/11/25
+import snowflake.connector
+from cryptography.hazmat.backends import default_backend
+from cryptography.hazmat.primitives import serialization
+
+
 from snowflake.snowpark.functions import col
+
+# add snowflake connector 07/11/25
+private_key_str = st.secrets["snowflake"]["private_key"]
+private_key = serialization.load_pem_private_key(
+    private_key_str.encode(),
+    password=None,
+    backend=default_backend()
+)
+conn = snowflake.connector.connect(
+    user=st.secrets["snowflake"]["user"],
+    account=st.secrets["snowflake"]["account"],
+    private_key=private_key,
+    warehouse=st.secrets["snowflake"]["warehouse"],
+    database=st.secrets["snowflake"]["database"],
+    schema=st.secrets["snowflake"]["schema"],
+    role=st.secrets["snowflake"]["role"]
+)
+
 
 # Write directly to the app
 st.title(f":cup_with_straw::strawberry: Customize Your Smoothie!:banana::cup_with_straw:")
