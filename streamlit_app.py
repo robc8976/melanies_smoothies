@@ -1,6 +1,10 @@
 # Import python packages
 import streamlit as st
 
+import requests
+smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+st.text(smoothiefroot_response)
+
 # add snowflake connector 07/11/25
 import snowflake.connector
 from cryptography.hazmat.backends import default_backend
