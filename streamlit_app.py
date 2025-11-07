@@ -11,10 +11,11 @@ from snowflake.snowpark.functions import col
 
 # add snowflake connector 07/11/25
 private_key_str = st.secrets["snowflake"]["private_key"]
+private_key_pp_str = st.secrets["snowflake"]["private_key_pp"]
 private_key = serialization.load_pem_private_key(
     private_key_str.encode(),
     #password=None,
-    password=st.secrets["snowflake"]["private_key_pp"],
+    password=private_key_pp_str,
     backend=default_backend()
 )
 conn = snowflake.connector.connect(
