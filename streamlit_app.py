@@ -44,7 +44,7 @@ st.write('The name on your Smoothie will be: ', name_on_order)
 
 #my_dataframe = session.table("smoothies.public.fruit_options").select(col("FRUIT_NAME"))
 cur = conn.cursor()
-cur.execute("SELECT FRUIT_NAME FROM smoothies.public.fruit_options")
+cur.execute("SELECT FRUIT_NAME, SEARCH_ON FROM smoothies.public.fruit_options")
 rows = cur.fetchall()
 columns = [desc[0] for desc in cur.description]
 import pandas as pd
