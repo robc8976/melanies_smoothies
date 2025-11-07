@@ -40,8 +40,14 @@ st.write('The name on your Smoothie will be: ', name_on_order)
 
 #cnx = st.connection("snowflake")
 #session = cnx.session()
-session = conn.session()
-my_dataframe = session.table("smoothies.public.fruit_options").select(col("FRUIT_NAME"))
+
+#my_dataframe = session.table("smoothies.public.fruit_options").select(col("FRUIT_NAME"))
+cur = conn.cursor()
+cur.execute("SELECT FRUIT_NAME FROM smoothies.public.fruit_options")
+rows = cur.fetchall()
+import pandas as pd
+my_dataframe = pd.DataFrame(rows, columns=columns)
+cur.close()
 
 #st.dataframe(data=my_dataframe, use_container_width=True)
 
