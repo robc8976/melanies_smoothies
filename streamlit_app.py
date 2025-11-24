@@ -30,7 +30,7 @@ conn = snowflake.connector.connect(
 )
 
 
-# Write directly to the app
+# Write directly to app
 st.title(f":cup_with_straw::strawberry: Customize Your Smoothie!:banana::cup_with_straw:")
 st.write(
   """Choose the fruits you want in your custom Smoothie"""
